@@ -1,10 +1,17 @@
 <?php
-        require_once 'conn.php';
-       
-        if($_GET['task_id']){
-                $task_id = $_GET['task_id'];
-               
-                $conn->query("DELETE FROM `task` WHERE `task_id` = $task_id") or die(mysqli_errno($conn));
-                header("location: index.php");
-        }      
+require_once 'conn.php';
+
+$task_id = filter_input(INPUT_GET, 'task_id', FILTER_SANITIZE_NUMBER_INT);
+
+if ($task_id) {
+    $stmt = $conn->prepare("DELETE FROM `task` WHERE `task_id` = ?");
+    $stmt->bind_param("i", $task_id);
+
+    if ($stmt->execute()) {
+        header("Location: index.php");
+        exit;
+    } else {
+        echo "Erro ao excluir a tarefa.";
+    }
+}
 ?>
