@@ -14,7 +14,5 @@ if ($task_id && $status_update) {
     } else {
         echo "Erro ao atualizar a tarefa.";
     }
-} else {
-    echo "Parâmetros inválidos.";
 }
 ?>
