@@ -1,0 +1,10 @@
+body{
+    margin-top: 50px;
+    display: flex;
+    /* background-color: red; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
